@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const Service = require('../models/Service');
-const { uuidv4 } = require("uuidv4");
+const { v4: uuidv4 } = require('uuid'); // Correct import for v4
 
 // @route   GET /api/services
 // @desc    Get all services
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 // @access  Public
 router.post('/', async (req, res) => {
   const { title, price } = req.body;
-  const id = uuidv4()
+  const id = uuidv4(); // Use v4() to generate UUID
   try {
     const newService = new Service({
       title,
