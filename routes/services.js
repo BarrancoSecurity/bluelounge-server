@@ -10,7 +10,7 @@ const { v4: uuidv4 } = require('uuid'); // Correct import for v4
 router.get('/', async (req, res) => {
   try {
     const services = await Service.find();
-    res.json(services);
+    res.json({services: services});
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
 // @desc    Create a new service
 // @access  Public
 router.post('/', async (req, res) => {
+
   const { title, price } = req.body;
   const id = uuidv4(); // Use v4() to generate UUID
   try {
